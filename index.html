@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tirupathi Trip</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.2/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.2/vfs_fonts.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="overlay" id="overlay"></div>
+  <div class="custom-dialog" id="custom-dialog">
+    <p>Please turn on auto-rotate for the best experience.</p>
+    <button class="dialogueButton" id="dialogueButton" onclick="closeDialog()">Close</button>
+  </div>
+
+  <script>
+    window.addEventListener('load', () => {
+      if (window.orientation !== 90 && window.orientation !== -90) {
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('custom-dialog').style.display = 'block';
+      }
+    });
+
+    function closeDialog() {
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('custom-dialog').style.display = 'none';
+    }
+  </script>
+  <style>
+    .custom-dialog {
+      position: fixed;
+      font-size: small;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 9999;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 9998;
+      display: none;
+    }
+
+    .dialogueButton{
+        padding: 7px 13px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+    }
+  </style>
+
+	<div class="top-bar">
+        <div class="top-bar-content">
+            <marquee behavior="scroll" direction="left"> The journey to Tirupathi is scheduled to commence on December 22nd. The trip is planned to conclude on December 25th, and we are expected to return by December 26th, which falls on a Tuesday. Click top-right corner for Major Events.</marquee>
+            <div class="timer" id="timer">
+                <span id="daysToTrip" class="clickable">Calculating...</span>
+                <div class="event-pane" id="eventPane">
+                    <button id="closeButtonEvent" class="close-button-event">×</button>
+                  <h3>Major Events</h3>
+                  <ul class="clickable-date" id="clickable-date">
+                    <li data-event-id="1" onclick="handleDateClick('Dec - 22')"><strong><span class="toggle-icon">></span> Dec - 22</strong></li>
+                    <div class="event-details" id="eventDetails-1">
+                      </div>
+
+                    <li data-event-id="2" onclick="handleDateClick('Dec - 23')"><strong><span class="toggle-icon">></span> Dec - 23</strong></li>
+                    <div class="event-details" id="eventDetails-2">
+                      </div>
+                    
+                    <li data-event-id="3" onclick="handleDateClick('Dec - 24')"><strong><span class="toggle-icon">></span> Dec - 24</strong></li>
+                    <div class="event-details" id="eventDetails-3">
+                      </div>
+                    
+                    <li data-event-id="4" onclick="handleDateClick('Dec - 25')"><strong><span class="toggle-icon">></span> Dec - 25</strong></li>
+                    <div class="event-details" id="eventDetails-4">
+                      </div>
+                                       
+                  </ul>
+                  
+                </div>
+              </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="left-pane">
+            <h2>Options</h2>
+            <ul>
+                <li>
+                    <button class="btn-download" onclick="showTicketLinks()">Download Tickets</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showHotelLinks()">Download Hotel Bookings</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showDayWisePlan()">Day Wise Plan</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showCheckList()">Travel Checklist</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showExpenses()">Add Expense</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showExpensesTable()">View Expenses</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showExpenseStatistics()">Expense Statistics</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="generateAndShowExpenseReport()">Generate Expense Report</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="activateBot()">Chat with bot - Baddu</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="activateForm()">Budget Calculator</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="clearLocalStorage()">Rapid Notification System(ADMIN)</button>
+                </li>
+                <li>
+                    <a href="https://forms.gle/R74Q8ra3xJyESAQ68" target="_blank" class="btn-download">Submit Status Ready</a>
+                </li>
+                <li>
+                    <a href="https://chat.whatsapp.com/JxEDLkrOHMgFYycDIAsVDt" target="_blank" class="btn-download">Contact Here</a>
+                </li>
+            </ul>
+        </div>
+        <div class="right-pane">
+            <select id="dayDropdown" onchange="updateTable()">
+            </select>
+            <div id="tableContainer"></div>
+            <div id="ticketLinks" class="hidden-links">
+            </div>
+            <div id="hotelLinks" class="hidden-links">
+            </div>
+            <div id="itineraryLinks" class="hidden-links">
+            </div>
+
+            <div id="expensesContainer" class="hidden-links">
+                <div class="header">
+                    <h2>Expenses</h2>
+                    <button class="json-button" id="json-button" onclick="openPopupWithLocalStorage()">View JSON</button>
+                </div>
+                <div id="expensesList"></div>
+            </div>
+            
+
+            <div id="jsonPopup" class="popup" style="display: none;">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup()">&times;</span>
+                    <textarea id="jsonTextArea" rows="15" readonly></textarea>
+                    <button onclick="copyToClipboard()">
+                        <i class="far fa-copy"> Copy</i> 
+                      </button>
+                </div>
+            </div>
+
+            <div id="jsonPopup2" class="popup" style="display: none;">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup2()">&times;</span>
+                    <textarea id="jsonTextArea2" rows="3" readonly></textarea>
+                    <button class="dialogueButton" id="dialogueButton" onclick="closePopup2()">Close</button>
+                </div>
+            </div>
+
+
+            <div id="expenseStatisticsContainer" class="hidden-links">
+                <h2>Expense Statistics</h2>
+                <div class="graphLoading" id="graphLoading">
+                    <p>Hold on. Generating Realtime Statistics ..... </p>
+                </div>
+                <canvas id="expenseChart"></canvas>
+            </div>
+
+            <video id="videoPlayer" controls autoplay>
+                <source src="route.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+                    <div id="checklistContent" class="checklistContent">
+                    </div>
+
+            <div id="participantDropdownContainer" class="participantDropdownContainer">
+                <label for="participantDropdown">Select Participant:</label>
+                <select id="participantDropdown">
+                  <option value="Adithya">Adithya</option>
+                  <option value="Karthik">Karthik</option>
+                  <option value="Murali">Murali</option>
+                  <option value="Bhai">Bhai</option>
+                  <option value="Pasha">Pasha</option>
+                </select>
+              </div>
+              <div id="pdfPreview" class="pdfPreview"></div>
+              
+
+            <div id="chatBox" class="hidden-links">
+                <div class="chat-container" id="chat-container">
+                    <div class="nameAndStatus" id="nameAndStatus">
+                        <i class="fas fa-robot">  B a d d u - The Bot</i>
+                        <div class="name">Online</div>
+                    </div><br>
+                    <div id="chat" class="chat">
+                    </div>
+                    <div class="input">
+                        <input type="text" id="botMessage" placeholder="Type your message">
+                        <button id="sendBotMessageBtn"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="addExpenseFormContainer" class="hidden-links">
+                <h2>Add Expense</h2>
+                <form onsubmit="submitExpense(event)">
+                    <label for="expenseName">Name:</label>
+                    <select id="expenseName">
+                        <option value="Adithya">Adithya</option>
+                        <option value="Karthik">Karthik</option>
+                        <option value="Murali">Murali</option>
+                        <option value="Bhai">Bhai</option>
+                        <option value="Pasha">Pasha</option>
+                    </select>
+
+                    <label for="expenseAmount">Amount:</label>
+                    <input type="text" id="expenseAmount" placeholder="Enter the amount">
+
+                    <label for="expenseDescription">Description:</label>
+                    <input type="text" id="expenseDescription" placeholder="Enter the description">
+
+                    <label>
+                        <input type="checkbox" id="addClearingCheckbox"> Add as part of Clearing 
+                    </label>
+            
+                    <label for="expenseFrom">From:</label>
+                    <select id="expenseFrom" disabled onchange="checkFromAndClearing()">
+                        <option value="Adithya">Adithya</option>
+                  <option value="Karthik">Karthik</option>
+                  <option value="Murali">Murali</option>
+                  <option value="Bhai">Bhai</option>
+                  <option value="Pasha">Pasha</option>
+                    </select>
+            
+                    <label for="expenseClearingTo">Clearing to:</label>
+                    <select id="expenseClearingTo" disabled onchange="checkFromAndClearing()">
+                        <option value="Adithya">Adithya</option>
+                  <option value="Karthik">Karthik</option>
+                  <option value="Murali">Murali</option>
+                  <option value="Bhai">Bhai</option>
+                  <option value="Pasha">Pasha</option>
+                    </select>
+            
+
+                    <button type="submit" id="submitButton">Submit</button>
+                </form>
+                
+            </div>
+
+            <div id="budgetCalculatorContainer" class="budgetCalculatorContainer">
+            <form id="budgetCalculatorForm" class="budgetCalculatorForm">
+                <h2>Budget Calculator</h2>
+                <div class="traveler-input">
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" value="Tirupathi Trip" readonly>
+            </div>
+
+            <div class="traveler-input">
+                <label for="duration">Duration (Days):</label>
+                <input type="number" id="duration" value="3">
+                </div>
+
+                <div class="traveler-input">
+                    <label for="nightsStay">Number of Nights of Stay:
+                    <span class="info-icon" title="Usually Duration Days - 1 day">
+                        <i class="fas fa-info-circle"></i>
+                      </span>
+                    </label>
+                    <input type="number" id="nightsStay" min="1">
+                    </div>
+
+                <fieldset>
+                    <legend>Number of Travelers :</legend>
+                    <div class="traveler-input">
+                    <label for="adults">Number of Adults:</label>
+                    <input type="number" id="noOfAdults">
+                </div>
+                </fieldset><br>
+        
+                <fieldset>
+                    <legend>Accommodation:</legend>
+                    <label>
+                        <input type="radio" name="accommodation" value="budgetHotel"> Budget Hotel
+                    </label>
+                    <label>
+                        <input type="radio" name="accommodation" value="midRangeHotel"> Mid range 3 star
+                    </label>
+                    <label>
+                        <input type="radio" name="accommodation" value="luxuryHotel"> Luxury Hotel
+                    </label>
+                </fieldset><br>
+        
+                
+                <fieldset>
+                    <legend>Transportation:</legend>
+                    <div class="traveler-input">
+                    <label for="transportation">Mode of Transportation:</label>
+                    <select id="transportation">
+                        <option value="airTravel">Air Travel</option>
+                        <option value="train">Train</option>
+                        <option value="bus">Bus</option>
+                        <option value="car">Car</option>
+                    </select>
+                </div>
+
+                    <div id="classDropdownContainer">
+                        <div class="traveler-input">
+                        <label for="class">Select Class:</label>
+                        <select id="class"></select>
+                    </div>
+                    </div>
+                </fieldset><br>
+
+                
+                <label for="sightseeing">Are you going to try all the listed places in Day Wise Plan?</label>
+                <label>
+                    <input type="radio" name="sightseeing" value="yes"> Yes
+                </label>
+                <label>
+                    <input type="radio" name="sightseeing" value="no"> No
+                </label><br>
+                <div class="traveler-input-tweak">
+                <label for="localTransport">What transportation would you use within destination?</label>
+                <select id="localTransport">
+                    <option value="localBuses">Local Buses</option>
+                    <option value="taxis">Taxis</option>
+                </select>
+                </div>
+                <div class="traveler-input-tweak">
+                <label for="shopping">How much are you going to spend on shopping in INR(Estimated):</label>
+                <input type="number" id="shopping"><br><br><br>
+                </div>
+                <button type="submit" id="calculateBudgetButton">Calculate Budget</button>
+            </form>
+        </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal()">&times;</span>
+              <div id="estimatedBudget"></div><br><br>
+              <button type="button" id="getEstimationSlipInModal">Get Estimation Slip</button>
+            </div>
+          </div>
+
+            <script>
+                const expenseNameSelect = document.getElementById("expenseName");
+                const expenseFromSelect = document.getElementById("expenseFrom");
+            
+                expenseNameSelect.addEventListener("change", function () {
+                    const selectedValue = expenseNameSelect.value;
+            
+                    expenseFromSelect.value = selectedValue;
+                });
+            </script>
+            <p id="result"></p>
+        </div>
+		
+    </div>
+    <script>
+        function calculateMonthlyExpenses() {
+          google.script.run.withSuccessHandler(displayReport).calculateMonthlyExpenses();
+        }
+    
+        function calculateCategoryExpenses() {
+          google.script.run.withSuccessHandler(displayReport).calculateCategoryExpenses();
+        }
+    
+        function displayReport(data) {
+          var reportDiv = document.getElementById('reportDiv');
+          reportDiv.innerHTML = '<h2>Expense Report</h2>' + data;
+        }
+      </script>
+    <script src="script.js"></script>
+</body>
+</html>

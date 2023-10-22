@@ -1,0 +1,1061 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Top Bar */
+  .top-bar {
+    background: linear-gradient(135deg, #3a86ff, #36d1dc);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  
+  .marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+  }
+  
+  /* Container */
+  .container {
+    display: flex;
+  }
+  
+  /* Left Pane */
+  .left-pane {
+    width: 20%;
+    background-color:#1e2222;
+    padding: 20px;
+    border-radius: 15px;
+  }
+  
+  .left-pane h2 {
+    margin-top: 20%;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #fff;
+    background: linear-gradient(135deg, #ff6b6b, #e53935);
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .left-pane ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .left-pane li {
+    margin-bottom: 6%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+  }
+  
+  .left-pane button.btn-download,
+  .left-pane a.btn-download {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    background: radial-gradient(circle, #dc0916, #f41fd6);
+    background-size: 200% 200%; /* Increase size for more dramatic effect */
+    border-radius: 10px; /* Add border-radius for soft cornering */
+    transition: background-position 0.5s;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .left-pane button.btn-download:hover,
+  .left-pane a.btn-download:hover {
+    background: linear-gradient(135deg, #FFB88C, #FF7F8E);
+  }
+  
+  
+  /* Right Pane */
+  .right-pane {
+    width: 70%;
+    padding: 20px;
+    margin-top: 5%;
+    box-sizing: border-box;
+  }
+  
+  .right-pane select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .right-pane table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none; /* Removing the default border */
+    border-radius: 10px; /* Adding rounded corners */
+    overflow: hidden; /* Hide overflow to prevent corner clipping */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
+  }
+  
+  .right-pane th,
+  .right-pane td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    font-size: 10px;
+  }
+  
+  .right-pane th {
+    background-color: #f2f2f2;
+  }
+  
+  tbody td,
+  thead th {
+    border: 1px solid #ccc;
+  }
+  
+  /* Add left and right padding for table cells to create space */
+  tbody td:not(:last-child),
+  thead th:not(:last-child) {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  
+  /* Stylish colors */
+  .right-pane th {
+    background-color: #3498db; /* Header background color */
+    color: white; /* Header text color */
+  }
+  
+  .right-pane td {
+    background-color: #ecf0f1; /* Cell background color */
+  }
+  
+  .right-pane tbody tr:nth-child(even) td {
+    background-color: #f7f9f9; /* Alternate row background color */
+  }
+  
+  .right-pane th,
+  .right-pane td {
+    border-bottom: 1px solid #ddd; /* Lighter border color */
+  }
+  
+  
+  
+  /* Add the following styles for the right pane */
+  
+  /* Show details class to apply styles to the right pane when showing links */
+  .right-pane .show-details {
+    margin-left: 0%;
+    margin-top: 0%;
+    width: 100%; 
+    margin-right: 100%;
+  }
+  
+  #itineraryLinks {
+    text-align: center; /* Center the links in the right pane */
+    margin-top: 0%;
+  }
+  
+  #itineraryLinks h2 {
+    font-size: 24px;
+    color: white;
+    padding: 10px;
+    background: linear-gradient(45deg, #FF6B6B, #DB36A4); /* Gradient background */
+    border-radius: 8px; /* Add rounded corners */
+  }
+  
+  
+  #itineraryLinks a {
+    display: block;
+    padding: 8px 16px;
+    background-color: #f2f2f2;
+    color: #007BFF;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  #itineraryLinks a:hover {
+    background-color: #007BFF;
+    color: #fff;
+  }
+  
+  #itineraryLinks br {
+    /* Adjust spacing between links */
+    line-height: 5px;
+  }
+  #dayDropdown {
+    display: none;
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(102.57deg, #e83e8c, #e53935);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  #dayDropdown option {
+    padding: 5px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  #dayDropdown:hover,
+  #dayDropdown:focus {
+    outline: none;
+  }
+  
+  #dayDropdown option:hover {
+    background-color: #f2f2f2;
+  }
+  
+  
+  
+  #hotelLinks {
+    text-align: center; /* Center the links in the right pane */
+    margin-top: 5%;
+  }
+  
+  #hotelLinks h2 {
+    font-size: 24px;
+    color: white;
+    padding: 10px;
+    background: linear-gradient(45deg, #FF6B6B, #DB36A4); /* Gradient background */
+    border-radius: 8px; /* Add rounded corners */
+  }
+  
+  #hotelLinks a {
+    display: block;
+    padding: 8px 16px;
+    background-color: #f2f2f2;
+    color: #007BFF;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  #hotelLinks a:hover {
+    background-color: #007BFF;
+    color: #fff;
+  }
+  
+  #hotelLinks br {
+    /* Adjust spacing between links */
+    line-height: 5px;
+  }
+  
+  
+  #ticketLinks {
+    text-align: center; /* Center the links in the right pane */
+    margin-top: 5%;
+  }
+  
+  #ticketLinks h2 {
+    font-size: 24px;
+    color: white;
+    padding: 10px;
+    background: linear-gradient(45deg, #FF6B6B, #DB36A4); /* Gradient background */
+    border-radius: 8px; /* Add rounded corners */
+  }
+  
+  #ticketLinks a {
+    display: block;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #f2f2f2, #ffffff);
+    color: #007BFF;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  #ticketLinks a:hover {
+    background: linear-gradient(135deg, #007BFF, #0052ac);
+    color: #fff;
+  }
+  
+  #ticketLinks br {
+    /* Adjust spacing between links */
+    line-height: 5px;
+  }
+  
+  #addExpenseFormContainer {
+    display: none;
+  }
+  
+  #result {
+    display: none;
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* Style for the Add Expense Form */
+  
+  #addExpenseFormContainer {
+    display: none; /* Hide the form by default */
+    margin-top: 20px;
+  }
+  
+  #addExpenseFormContainer h2 {
+    font-size: 24px;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 10px; /* Adjust padding as needed */
+    background: radial-gradient(circle, #dc0916, #f41fd6);
+    background-size: 200% 200%; /* Increase size for more dramatic effect */
+    border-radius: 10px; /* Add border-radius for soft cornering */
+    transition: background-position 0.5s; /* Add smooth transition */
+  }
+  
+  #addExpenseFormContainer h2:hover {
+    background-position: 100% 50%; /* Apply animation on hover */
+  }
+  
+  #addExpenseFormContainer label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  #addExpenseFormContainer select,
+  #addExpenseFormContainer input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  #addExpenseFormContainer button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #addExpenseFormContainer button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Optional: Add some additional spacing between form elements */
+  #addExpenseFormContainer form {
+    margin-bottom: 20px;
+  }
+  
+  
+  
+  /*---------------------------------------------*/
+  
+  /* Style for the Expenses Table */
+  
+  #expensesContainer {
+    display: none; /* Hide the expenses container by default */
+    margin-top: 20px;
+  }
+  
+  #expensesContainer h2 {
+    font-size: 24px;
+    color: #007BFF;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  
+  #expensesContainer table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+  }
+  
+  #expensesContainer th,
+  #expensesContainer td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  #expensesContainer th {
+    background-color: #3498db;
+  }
+  
+  /* Add the following styles for the chart container */
+  #expenseStatisticsContainer {
+    display: none;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #f8c0c8, #f3e6e8);
+    margin-top: 0%;
+  }
+  
+  /* Adjust the chart canvas size to fit the container */
+  #expenseChart {
+    width: 100%;
+    height: 40%;
+  }
+  
+  
+  #videoPlayer {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-bottom: 3%;
+    border-radius: 10px;
+  }
+  
+  
+  .chat-container {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0 auto;
+    height: 100%; /* Occupy full height */
+    display: flex;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 10px;
+    background-color: #e0e0d1;
+  }
+  
+  .chat {
+    flex: 1; /* Occupy remaining space */
+    max-height: 100vh;
+    overflow-y: auto; /* Enable scrolling */
+  }
+  
+  @media screen and (max-width: 768px) {
+    .chat {
+      max-height: 80vh; /* Adjust the value for smaller screens */
+    }
+  }
+  
+  .nameAndStatus {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: linear-gradient(to right, #107c10, #2da833);
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+  }
+  
+  
+  .options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 10px;
+  }
+  
+  .option {
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 10px;
+  }
+  
+  .option:hover {
+    background-color: #ddd;
+  }
+  
+  .bot {
+    align-self: flex-start;
+    background-color: white;  
+    color: black;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+  }
+  
+  
+  .user {
+    color: white;
+    text-align: right;
+    align-self: flex-end;
+    background: linear-gradient(to left, #e64d4d, #f41fd6);
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+  }
+  
+  
+  #chatBox .input {
+    display: flex;
+    align-items: center;
+  }
+  
+  #chatBox #botMessage {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  #chatBox #sendBotMessageBtn {
+    background: linear-gradient(to left, #dc0916, #f41fd6);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  
+  #chatBox #sendBotMessageBtn::after {
+    content: "\2192"; /* Unicode arrow right character */
+    margin-left: 5px;
+  }
+  
+  
+  #loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  #loading p {
+    font-size: 24px;
+    animation: trainMoveLeft 0.8s infinite; /* Animation for moving train to the left */
+  }
+  
+  @keyframes trainMoveLeft {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-10px); /* Moving to the left */
+    }
+    50% {
+      transform: translateX(-20px); /* Moving to the left */
+    }
+    75% {
+      transform: translateX(-10px); /* Moving to the left */
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  #graphLoading {
+    display: none;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  #graphLoading p {
+    font-size: 24px;
+    animation: trainMoveLeft 0.8s infinite;
+  }
+  
+  /* popup stuff */
+  
+  /* Style for the "View JSON" button */
+  .json-button {
+    background: linear-gradient(45deg, #c94259, #f18973);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: none;
+  }
+  
+  
+  /* Style for the popup container */
+  .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+  }
+  
+  /* Style for the popup content */
+  .popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  /* Style for the close button */
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  /* Style for the textarea */
+  #jsonTextArea {
+    width: 100%;
+    padding: 2%;
+    margin-top: 10px;
+    resize: vertical;
+    resize: horizontal;
+    border: none;
+  }
+  
+  #jsonTextArea2 {
+    width: 100%;
+    padding: 2%;
+    margin-top: 10px;
+    resize: vertical;
+    resize: horizontal;
+    border: none;
+  }
+  
+  
+  /* Style for the "Copy to Clipboard" button */
+  .popup-content button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .header h2 {
+    margin: 0; /* Remove default margin for h2 */
+  }
+  
+  #submitButton:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+  
+  #submitButton:disabled:hover {
+    background-color: grey; /* Keep the same grey color on hover */
+  }
+  
+  .participantDropdownContainer {
+    display: none;
+    align-items: center;
+    margin-bottom: 10px;
+    background: linear-gradient(102.57deg, #e83e8c, #e53935);
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  
+  .pdfPreview{
+    display: none;
+  }
+  
+  .participantDropdownContainer label {
+    margin-right: 10px; /* Add spacing between label and dropdown */
+  }
+  
+  #budgetCalculatorContainer {
+    display: none; /* Hide the form by default */
+    margin-top: 20px;
+    max-height: 120vh;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    font-size:small;
+  }
+  
+  #budgetCalculatorContainer h2 {
+    font-size: 24px;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 10px; /* Adjust padding as needed */
+    background: radial-gradient(circle, #dc0916, #f41fd6);
+    background-size: 200% 200%; /* Increase size for more dramatic effect */
+    border-radius: 10px; /* Add border-radius for soft cornering */
+    transition: background-position 0.5s; /* Add smooth transition */
+  }
+  
+  #budgetCalculatorContainer h2:hover {
+    background-position: 100% 50%; /* Apply animation on hover */
+  }
+  
+  
+  
+  #budgetCalculatorContainer label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  #budgetCalculatorContainer select,
+  #budgetCalculatorContainer input[type="text"],input[type="number"] {
+    width: 50%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  #budgetCalculatorContainer button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #budgetCalculatorContainer button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Optional: Add some additional spacing between form elements */
+  #budgetCalculatorContainer form {
+    margin-bottom: 20px;
+  }
+  
+  .traveler-input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .traveler-input label {
+    flex-basis: 30%; /* Adjust the width as needed */
+    margin-right: 10px;
+  }
+  
+  .traveler-input input {
+    flex-basis: 30%; /* Adjust the width as needed */
+  }
+  
+  .traveler-input-tweak {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .traveler-input-tweak label {
+    flex-basis: 50%; /* Adjust the width as needed */
+    margin-right: 10px;
+  }
+  
+  .traveler-input-tweak input {
+    flex-basis: 30%; /* Adjust the width as needed */
+  }
+  
+  /* Style for the info icon */
+  .info-icon {
+    display: inline-block;
+    position: relative;
+    margin-left: 5px;
+    font-size: 14px;
+    color: #007BFF;
+    cursor:pointer;
+  }
+  
+  @media (max-width: 767px) {
+    .info-icon {
+      touch-action: manipulation; 
+      cursor: pointer; 
+    }
+  }
+  
+  
+  /* Style for modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 20% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    text-align: center;
+    border-radius: 5px;
+    position: relative;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  #getEstimationSlipInModal {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    background: linear-gradient(135deg, #FFB88C, #FF7F8E);
+    border-radius: 10px;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #getEstimationSlipInModal:hover {
+    background: radial-gradient(circle, #f41fd6, #dc0916);
+  }
+  
+  
+  .top-bar {
+    background-color: #007BFF;
+    color: white;
+    padding: 5px;
+  }
+  
+  .top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .timer {
+    font-size: 12px;
+    font-weight: bold;
+    color: #f41fd6;
+    cursor: pointer;
+  }
+  
+  fieldset {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  
+  legend {
+    background: linear-gradient(135deg, #dc0916, #f41fd6);
+    color: white;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 2px 8px;
+  }
+  
+  /* event pane ----------------------------- */
+  
+  .event-pane {
+    display: none;
+    color: white;
+    background: linear-gradient(135deg, #ff6b6b, #FF7F8E);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1000;
+    width: 250px; /* Adjust width as needed */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    right: 0;
+  }
+  
+  .event-pane h3{
+    color: whitesmoke;
+  }
+  
+  
+  /* Style for the date list */
+  .clickable-date {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+  }
+  
+  .clickable-date li {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    background: linear-gradient(135deg, #dc0916, #f41fd6);
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-right: 6px;
+  }
+  
+  .clickable-date li:hover {
+    cursor: pointer;
+    background: black;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .date-text {
+    flex: 1;
+    margin-left: 10px;
+  }
+  
+  .date-text:hover {
+    text-decoration: underline;
+  }
+  
+  /* Style for the close button */
+  .close-button-event {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: white;
+    font-weight: bolder;
+    cursor: pointer;
+    border-radius: 2px;
+    margin-right: 8px;
+  }
+  
+  .event-details {
+    display: none;
+    margin-top: 10px;
+    right: 10px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    position: relative; /* Added to ensure proper positioning */
+    left: 0;
+    text-align: left;
+    font-weight: lighter;
+  }
+  
+  .toggle-icon {
+    display: inline-block;
+    transition: transform 0.3s;
+  }
+  
+  /* Your existing styles... */
+  
+  .checklist-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    font-size: small;
+  }
+  
+  .category {
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  
+  .category label {
+    display: block inline;
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+  
+  .checklistContent {
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    display:none;
+  }
+  
+  /* Optional: Add transitions for a smoother effect */
+  .checklist-container label,
+  .checklistContent label {
+    transition: color 0.3s, text-decoration 0.3s;
+  }
+  
+  .checklist-container input:checked + label,
+  .checklistContent input:checked + label {
+    color: #aaa;
+    text-decoration: line-through;
+  }
+  
+  /* Optional: Style the checkboxes */
+  .checklist-container input[type="checkbox"],
+  .checklistContent input[type="checkbox"] {
+    margin-right: 5px;
+    font-size: 10px;
+  }
+  
+  
+  /* Pagination container */
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Adjust the margin as needed */
+    font-size: smaller;
+  }
+  
+  /* Pagination buttons */
+  .pagination-button {
+    background-color: #007bff; /* Blue background color */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 4px;
+    padding: 4px 7px;
+    margin: 0 4px; /* Adjust the margin as needed */
+    cursor: pointer;
+  }
+  
+  /* Hover effect for buttons (optional) */
+  .pagination-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  .total-sum {
+    flex: 1;
+    text-align: right;
+    font-size: small;
+  }
